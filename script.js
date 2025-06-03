@@ -40,6 +40,19 @@ class Cesto
         return false;
     }
 
+    buscar(valor)
+    {
+        return this.#buscar(valor, 0, this.quantidade - 1);
+    }
+
+    #buscar(valor, esq, dir)
+    {
+        let meio = Math.floor((esq + dir) / 2);
+        if(esq > dir) return false;
+        if(this.elementos[meio] == valor) return true;
+        return this.#buscar(valor, esq, meio - 1) || this.#buscar(valor, meio + 1, dir); 
+    }
+
     limpar()
     {
         elementos = [];
@@ -65,7 +78,7 @@ function inserir(valor)
         return;
 
     cesto.p++;
-    let novoCesto = new Cesto(cesto.p, tTotal * (cestos.length - 1)); 
+    let novoCesto = new Cesto(cesto.p, tTotal * (cestos.length)); 
     cestos.push(novoCesto);
 
     if(cesto.p <= p)
@@ -76,10 +89,23 @@ function inserir(valor)
                 diretorio[i] = cestos.length - 1;
         }
     }
+    else
+    {
+        let copiaDiretorio = [...diretorio];
+        copiaDiretorio[idx] = cestos.length - 1;
+        diretorio.push(copiaDiretorio);
+        p++;
+    }
 
     let elementos = [...cesto.elementos];
     cesto.limpar();
     elementos.push(valor);
 
     elementos.forEach(e => inserir(e));
+}
+
+function remover(valor)
+{
+    let idx = hash(valor);
+    cestos[diretorio[idx]].remover(valor);
 }

@@ -21,7 +21,7 @@ header h1 {
   margin-left: 50px;
 }
 
-#controls {
+#controles {
   padding-top: 10px;
   padding-left: 10px;
   display: flex;
@@ -29,4 +29,22 @@ header h1 {
   align-items: center;
   justify-content: flex-start;
   gap: 30px;
+}
+
+input {
+  width: 100px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  /* Firefox */
 }
