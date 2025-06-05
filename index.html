@@ -16,7 +16,7 @@
     <section id="controles">
       <div class="controle">
         <label for="tamanho-cesto">Tamanho do cesto:</label>
-        <input type="number" id="cesto" name="tamanho-cesto">
+        <input type="number" id="tamanho-cesto" name="tamanho-cesto">
       </div>
       <div class="controle">
         <input type="number" id="inserir" name="inserir-valor">
@@ -33,10 +33,20 @@
     <section id="tabela-hash">
       <table>
         <thead>
-          <th id="profundidade-global">P = 0</th>
+          <th> P = <span id="profundidade-global">0</span></th>
         </thead>
-        <tbody>
+        <tbody id="diretorio">
 
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <th></th>
+          <th>P'</th>
+          <th>Quantidade</th>
+          <th>Itens</th>
+        </thead>
+        <tbody id="cestos">
         </tbody>
       </table>
     </section>

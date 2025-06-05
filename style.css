@@ -21,6 +21,13 @@ header h1 {
   margin-left: 50px;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 60px;
+}
+
 #controles {
   padding-top: 10px;
   padding-left: 10px;
@@ -29,6 +36,11 @@ header h1 {
   align-items: center;
   justify-content: flex-start;
   gap: 30px;
+  flex-wrap: wrap;
+}
+
+.controle {
+  flex-shrink: 0;
 }
 
 input {
@@ -47,4 +59,22 @@ input[type=number] {
   appearance: textfield;
   -moz-appearance: textfield;
   /* Firefox */
+}
+
+#tabela-hash {
+  padding: 0 50px;
+  display: flex;
+  gap: 70px;
+}
+
+table,
+th,
+td,
+tr {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+#diretorio tr {
+  text-align: center;
 }
