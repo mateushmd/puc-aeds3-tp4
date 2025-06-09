@@ -5,8 +5,11 @@ Um site onde é possível realizar operações em uma Tabela Hash Extensível co
 ## Participantes
 
 [Diego Feitosa Ferreira dos Santos](https://github.com/Sil3ncy)
+<br>
 [Felipe Guerzoni Martins Flôres Maia](https://github.com/flp2113)
+<br>
 [Guilherme Soares Silva](https://github.com/guisilvas)
+<br>
 [Mateus Henrique Medeiros Diniz](https://github.com/mateushmd)
 
 ## Estrutura
@@ -22,7 +25,7 @@ A classe cesto realiza todas as função da Hash Table implementada.
 - buscar: A função buscar retorna um valor caso exista em um cesto.
 - limpar: Remove todos os valores em cestos, caso haja.
 
-#### Funções dos cestos
+#### Funções do cesto
 
 `reset`
 
@@ -58,11 +61,11 @@ Destaca um elemento buscado no cesto.
 
 ## Experiência
 
-- [] A visualização interativa da Tabela Hash Extensível foi criada?
+- [X] A visualização interativa da Tabela Hash Extensível foi criada?
 - [] Há um vídeo de até 2 minutos demonstrando o uso da visualização?
 - [] O trabalho está funcionando corretamente?
-- [] O trabalho está completo?
-- [] O trabalho é original e não a cópia de um trabalho de um colega?
+- [X] O trabalho está completo?
+- [X] O trabalho é original e não a cópia de um trabalho de um colega?
 
 ## Execução
 
