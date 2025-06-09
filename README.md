@@ -13,7 +13,7 @@ Um site onde é possível realizar operações em uma Tabela Hash Extensível co
 
 O Trabalho Prático 4 foi desenvolvido na linguagem `Javascript`, com visualização em HTML e CSS.
 
-### Cesto
+### Extensible Hash Table
 
 `Cesto`
 
@@ -22,35 +22,37 @@ A classe cesto realiza todas as função da Hash Table implementada.
 - buscar: A função buscar retorna um valor caso exista em um cesto.
 - limpar: Remove todos os valores em cestos, caso haja.
 
-#### reset
+#### Funções dos cestos
+
+`reset`
 
 Limpa todos os cestos através da função remove do JS.
 
-#### hash
+`hash`
 
 Encontra o cesto a se inserir o valor.
 
-#### inserir
+`inserir`
 
 Insere o valor digitado em um cesto por meio da função push do JS.
 
-#### buscar
+`buscar`
 
 Retorna um valor caso ele exista na Hash Table.
 
-#### reiniciar
+`reiniciar`
 
 Cria uma nova Hash Table extensível vazia.
 
-#### popular
+`popular`
 
 Preenche a Hash Table com valores sequenciais.
 
-#### criarElementoCesto
+`criarElementoCesto`
 
 Cria um novo elemento visual no cesto.
 
-#### mostrar
+`mostrar`
 
 Destaca um elemento buscado no cesto.
 
