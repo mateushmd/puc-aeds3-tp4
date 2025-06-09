@@ -29,30 +29,38 @@ A classe cesto realiza todas as função da Hash Table implementada.
 #### Funções do cesto
 
 `reset`
+
 Limpa todos os cestos através da função remove do JS.
 
 `hash`
+
 Encontra o cesto a se inserir o valor.
 
 `inserir`
+
 Insere o valor digitado em um cesto por meio da função push do JS.
 
 `buscar`
+
 Retorna um valor caso ele exista na Hash Table.
 
 `reiniciar`
+
 Reinicia a Hash Table extensível vazia.
 
 `popular`
+
 Preenche a Hash Table com valores sequenciais arbitrariamente.
 
 `criarElementoCesto`
+
 Cria um novo elemento visual no cesto.
 
 `mostrar`
+
 Destaca um elemento buscado no cesto.
 
-* As funções também estão disponíveis via console do browser.
+*As funções também estão disponíveis via console do browser.
 
 ## Experiência
 
