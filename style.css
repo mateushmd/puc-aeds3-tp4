@@ -70,3 +70,9 @@ tr {
 tbody tr td {
   min-width: 20px;
 }
+
+#highlight1,
+#highlight2 {
+  border: 3px solid red;
+  z-index: 10;
+}

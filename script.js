@@ -43,6 +43,7 @@ const diretorioEl = document.querySelector('#diretorio');
 const cestosEl = document.querySelector('#cestos');
 const pEl = document.querySelector('#profundidade-global');
 const inserirInputEl = document.querySelector('#inserir');
+const buscarInputEl = document.querySelector('#buscar');
 const cabecalhoItensEl = document.querySelector('#cabecalho-itens');
 
 let diretorio, dElements, cestos, cElements, p;
@@ -56,12 +57,46 @@ document.querySelector('#tamanho-cesto').addEventListener('change', e => {
     tTotal = tCesto * tItem;
 
     reset();
+    let hEl = document.querySelector('#highlight1');
+    if(hEl) hEl.id = '';
+    hEl = document.querySelector('#highlight2');
+    if(hEl) hEl.id = '';
 });
 
 document.querySelector('#inserir-btn').addEventListener('click', () => {
     if (!parseInt(inserirInputEl.value)) return;
 
     inserir(parseInt(inserirInputEl.value));
+    let hEl = document.querySelector('#highlight1');
+    if(hEl) hEl.id = '';
+    hEl = document.querySelector('#highlight2');
+    if(hEl) hEl.id = '';
+});
+
+document.querySelector('#buscar-btn').addEventListener('click', () => {
+    if(!parseInt(buscarInputEl.value)) return;
+
+    const value = parseInt(buscarInputEl.value);
+
+    if(!buscar(parseInt(buscarInputEl.value))) return;
+    
+    let h = hash(value);
+    dElements[h].id = 'highlight1';
+    cElements[diretorio[h]].querySelectorAll('.item-cesto').forEach(el => {
+        if(parseInt(el.innerHTML) === value)
+        {
+            el.id = 'highlight2';
+            return;
+        }
+    });
+});
+
+document.querySelector('#reiniciar-btn').addEventListener('click', () => {
+    reset();
+    let hEl = document.querySelector('#highlight1');
+    if(hEl) hEl.id = '';
+    hEl = document.querySelector('#highlight2');
+    if(hEl) hEl.id = '';
 });
 
 function reset() {
@@ -100,10 +135,10 @@ function inserir(valor) {
 
     cesto.p++;
     cEl.querySelector('.profundidade-local').innerHTML = cesto.p;
-    let novoCesto = new Cesto(cesto.p, tTotal * (cestos.length));
+    let novoCesto = new Cesto(cesto.p, tTotal * (cestos.length - 1));
 
     cestos.push(novoCesto);
-    cElements.push(criarElementoCesto(tTotal * (cestos.length), cesto.p));
+    cElements.push(criarElementoCesto(tTotal * (cestos.length - 1), cesto.p));
 
     if (cesto.p <= p) {
         for (let i = diretorio.length - 1; i >= 0; i--) {
