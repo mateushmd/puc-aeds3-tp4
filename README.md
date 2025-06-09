@@ -21,9 +21,10 @@ O Trabalho Prático 4 foi desenvolvido na linguagem `Javascript`, com visualiza�
 `Cesto`
 
 A classe cesto realiza todas as função da Hash Table implementada.
-- inserir: A função inserir realiza a inserção de um valor válido em seu cesto.
-- buscar: A função buscar retorna um valor caso exista em um cesto.
-- limpar: Remove todos os valores em cestos, caso haja.
+- tamanho do cesto: Define o tamanho do cesto.
+- inserir: Realiza a inserção de um valor válido em seu cesto.
+- buscar: Retorna um valor caso exista em um cesto.
+- reiniciar: Remove todos os valores em cestos, caso haja.
 
 #### Funções do cesto
 
@@ -62,8 +63,8 @@ Destaca um elemento buscado no cesto.
 ## Experiência
 
 - [X] A visualização interativa da Tabela Hash Extensível foi criada?
-- [] Há um vídeo de até 2 minutos demonstrando o uso da visualização?
-- [] O trabalho está funcionando corretamente?
+- [X] Há um vídeo de até 2 minutos demonstrando o uso da visualização?
+- [X] O trabalho está funcionando corretamente?
 - [X] O trabalho está completo?
 - [X] O trabalho é original e não a cópia de um trabalho de um colega?
 
