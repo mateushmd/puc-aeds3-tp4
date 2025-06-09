@@ -126,6 +126,28 @@ function reset() {
     dElements.push(criarElementoDiretorio(0));
     cElements.push(criarElementoCesto(0, 0));
 
+    const profundidadeGlobalEl = document.querySelector('#profundidade-global');
+    if (profundidadeGlobalEl) {
+        profundidadeGlobalEl.innerHTML = 0; 
+    }
+
+    cElements.forEach(cEl => {
+        const profundidadeLocal = cEl.querySelector('.profundidade-local');
+        if (profundidadeLocal) {
+            profundidadeLocal.innerHTML = 0; 
+        }
+
+        const qtdItens = cEl.querySelector('.qtd-itens');
+        if (qtdItens) {
+            qtdItens.innerHTML = 0;
+        }
+
+        const itensCesto = cEl.querySelectorAll('.item-cesto');
+        itensCesto.forEach(item => item.innerHTML = '');
+    });
+
+    pEl.innerHTML = p;
+
     cabecalhoItensEl.colSpan = tCesto;
 }
 
@@ -183,6 +205,8 @@ function inserir(valor) {
     elementos.push(valor);
 
     elementos.forEach(e => inserir(e));
+    console.log(`Elemento ${valor} inserido com sucesso.`);
+    return true;
 }
 
 function buscar(valor) {
@@ -197,7 +221,7 @@ function reiniciar() {
 }
 
 function popular() {
-    for (let i = 1; i <= 10; i++) inserir(i);
+    for (let i = 1; i <= 13; i++) inserir(i);
 }
 
 function criarElementoDiretorio(valor) {
@@ -225,7 +249,6 @@ function criarElementoCesto(endereco, profundidade) {
     colunaQuantidadeEl.classList.add('qtd-itens');
     el.appendChild(colunaQuantidadeEl);
 
-    // Um <td> para cada item (dinâmico)
     for (let i = 0; i < tCesto; i++) {
         const colunaItemEl = document.createElement('td');
         colunaItemEl.classList.add('item-cesto');
