@@ -33,6 +33,11 @@ class Cesto {
         this.elementos = [];
         this.quantidade = 0;
     }
+
+    definir(valor) {
+	if(valor < 1) return -1;
+	tCest = valor; 
+    }
 }
 
 let tItem = 4;
@@ -89,6 +94,15 @@ document.querySelector('#buscar-btn').addEventListener('click', () => {
             return;
         }
     });
+    
+    setTimeout(() => {
+        dElements[h].id = ''; 
+        cElements[diretorio[h]].querySelectorAll('.item-cesto').forEach(el => {
+            if (parseInt(el.innerHTML) === value) {
+                el.id = ''; 
+            }
+        });
+    }, 3000);
 });
 
 document.querySelector('#reiniciar-btn').addEventListener('click', () => {
@@ -231,3 +245,4 @@ const mostrar = () => {
         console.log(`end = ${el.endereco}\np' = ${el.p}\nqtd = ${el.quantidade}\n${el.elementos}`);
     })
 }; 
+
