@@ -47,23 +47,10 @@ input {
   width: 100px;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
-  -webkit-appearance: none;
-  margin: 0;
-  /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-input[type=number] {
-  appearance: textfield;
-  -moz-appearance: textfield;
-  /* Firefox */
-}
-
 #tabela-hash {
   padding: 0 50px;
   display: flex;
+  align-items: flex-start;
   gap: 70px;
 }
 
@@ -73,8 +60,13 @@ td,
 tr {
   border: 1px solid black;
   border-collapse: collapse;
+  text-align: center;
 }
 
 #diretorio tr {
   text-align: center;
+}
+
+tbody tr td {
+  min-width: 20px;
 }

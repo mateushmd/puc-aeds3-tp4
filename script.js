@@ -1,15 +1,3 @@
-const tItem = 4;
-let tCesto = 4;
-let tTotal = tCesto * tItem;
-
-const cestosEl = document.querySelector('#diretorio');
-const pEl = document.querySelector('#profundidade-global');
-
-document.querySelector('#tamanho-cesto').addEventListener('change', (e) => {
-    tCesto = e.target.value;
-    tTotal = tCesto * tItem;
-});
-
 class Cesto {
     constructor(p, endereco, cestoEl) {
         this.p = p;
@@ -47,35 +35,82 @@ class Cesto {
     }
 }
 
-let diretorio = [0];
-let dElements = [];
-let cestos = [new Cesto(0, 0)];
-let p = 0;
+let tItem = 4;
+let tCesto = 4;
+let tTotal = tCesto * tItem;
 
-dElements.push(criarElementoDiretorio(0));
+const diretorioEl = document.querySelector('#diretorio');
+const cestosEl = document.querySelector('#cestos');
+const pEl = document.querySelector('#profundidade-global');
+const inserirInputEl = document.querySelector('#inserir');
+const cabecalhoItensEl = document.querySelector('#cabecalho-itens');
 
-popular();
+let diretorio, dElements, cestos, cElements, p;
+
+reset();
+
+document.querySelector('#tamanho-cesto').addEventListener('change', e => {
+    if (!parseInt(e.target.value)) return;
+
+    tCesto = parseInt(e.target.value);
+    tTotal = tCesto * tItem;
+
+    reset();
+});
+
+document.querySelector('#inserir-btn').addEventListener('click', () => {
+    if (!parseInt(inserirInputEl.value)) return;
+
+    inserir(parseInt(inserirInputEl.value));
+});
+
+function reset() {
+    diretorioEl.querySelectorAll('tr').forEach(el => el.remove());
+    cestosEl.querySelectorAll('tr').forEach(el => el.remove());
+
+    diretorio = [0];
+    dElements = [];
+    cestos = [new Cesto(0, 0)];
+    cElements = [];
+    p = 0;
+
+    dElements.push(criarElementoDiretorio(0));
+    cElements.push(criarElementoCesto(0, 0));
+
+    cabecalhoItensEl.colSpan = tCesto;
+}
 
 function hash(valor) {
     return valor % (2 ** p);
 }
 
 function inserir(valor) {
+    if (buscar(valor)) return;
+
     let idx = hash(valor);
     let cesto = cestos[diretorio[idx]];
+    const cEl = cElements[diretorio[idx]];
 
-    if (cesto.inserir(valor))
+    if (cesto.inserir(valor)) {
+        cEl.querySelector('.qtd-itens').innerHTML = cesto.quantidade;
+        const itensEl = cEl.querySelectorAll('.item-cesto');
+        itensEl[cesto.quantidade - 1].innerHTML = valor;
         return;
+    }
 
     cesto.p++;
+    cEl.querySelector('.profundidade-local').innerHTML = cesto.p;
     let novoCesto = new Cesto(cesto.p, tTotal * (cestos.length));
+
     cestos.push(novoCesto);
+    cElements.push(criarElementoCesto(tTotal * (cestos.length), cesto.p));
 
     if (cesto.p <= p) {
         for (let i = diretorio.length - 1; i >= 0; i--) {
             if (diretorio[i] === diretorio[idx]) {
                 diretorio[i] = cestos.length - 1;
-                dElements[i].innerHTML = cestos.length - 1;
+                dElements[i].innerHTML = tTotal * (cestos.length - 1);
+                break;
             }
         }
     }
@@ -86,7 +121,7 @@ function inserir(valor) {
 
         let copiaDElements = [];
         dElements.forEach(el => copiaDElements.push(criarElementoDiretorio(el.innerHTML)));
-        copiaDElements[idx].innerHTML = cestos.length - 1;
+        copiaDElements[idx].innerHTML = tTotal * (cestos.length - 1);
         copiaDElements.forEach(el => dElements.push(el));
 
         p++;
@@ -95,6 +130,7 @@ function inserir(valor) {
 
     let elementos = [...cesto.elementos];
     cesto.limpar();
+    cEl.querySelectorAll('.item-cesto').forEach(el => el.innerHTML = '');
     elementos.push(valor);
 
     elementos.forEach(e => inserir(e));
@@ -118,21 +154,45 @@ function popular() {
 function criarElementoDiretorio(valor) {
     const el = document.createElement('tr');
     el.innerHTML = valor;
-    cestosEl.appendChild(el);
+    diretorioEl.appendChild(el);
     return el;
 }
 
-function criarElementoCesto(endereco) {
+function criarElementoCesto(endereco, profundidade) {
     const el = document.createElement('tr');
-    const colunaEnderecoEl = document.createElement('td', { class: 'endereco' });
+
+    const colunaEnderecoEl = document.createElement('td');
     colunaEnderecoEl.innerHTML = endereco;
+    colunaEnderecoEl.classList.add('endereco');
     el.appendChild(colunaEnderecoEl);
-    el.appendChild(document.createElement('td', { class: 'profundidade-local' }));
-    el.appendChild(document.createElement('td', { class: 'qtd-itens' }));
+
+    const colunaProfundidadeEl = document.createElement('td');
+    colunaProfundidadeEl.innerHTML = profundidade;
+    colunaProfundidadeEl.classList.add('profundidade-local');
+    el.appendChild(colunaProfundidadeEl);
+
+    const colunaQuantidadeEl = document.createElement('td');
+    colunaQuantidadeEl.innerHTML = 0;
+    colunaQuantidadeEl.classList.add('qtd-itens');
+    el.appendChild(colunaQuantidadeEl);
 
     // Um <td> para cada item (dinâmico)
-    for (let i = 0; i < tCesto; i++)
-        el.appendChild(document.createElement('td', { class: 'item-cesto' }));
+    for (let i = 0; i < tCesto; i++) {
+        const colunaItemEl = document.createElement('td');
+        colunaItemEl.classList.add('item-cesto');
+        el.appendChild(colunaItemEl);
+    }
+
+    cestosEl.appendChild(el);
 
     return el;
 }
+
+const mostrar = () => {
+    console.log(p);
+    console.log(diretorio);
+    console.log('\n');
+    cestos.forEach(el => {
+        console.log(`end = ${el.endereco}\np' = ${el.p}\nqtd = ${el.quantidade}\n${el.elementos}`);
+    })
+}; 
