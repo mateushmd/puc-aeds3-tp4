@@ -2,6 +2,8 @@
 
 Um site onde é possível realizar operações em uma Tabela Hash Extensível com um feedback visual para melhor entendimento da estrutura.
 
+*O vídeo-apresentação do site está disponível em https://youtu.be/vye--bhCvtM*
+
 ## Participantes
 
 [Diego Feitosa Ferreira dos Santos](https://github.com/Sil3ncy)
